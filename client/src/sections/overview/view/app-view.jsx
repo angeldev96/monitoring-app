@@ -12,7 +12,7 @@ export default function AppView() {
   useEffect(() => {
     const fetchWaterLevel = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/last-water-level');
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/last-water-level`);
         if (response.data && response.data.length > 0) {
           setWaterLevel(response.data[0].level);
         }
