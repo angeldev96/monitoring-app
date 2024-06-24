@@ -6,7 +6,7 @@
     "mysql2": "^3.10.1"
   },
   "scripts": {
-    "build": "echo 'No build step required'",
+    "build": "npm install",
     "start": "node app.js"
   }
 }
