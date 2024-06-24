@@ -16,9 +16,9 @@ app.use(cors({
     credentials: true                 // To allow sending of cookies
   }));
 
-app.get('/water-levels', async (req, res) => {
+app.get('/last-water-level', async (req, res) => {
   try {
-    const levels = await db.getWaterLevelsLast24Hours();
+    const levels = await db.getLastWaterLevels();
     res.json(levels);
   } catch (error) {
     console.error('Error al obtener niveles de agua:', error);
