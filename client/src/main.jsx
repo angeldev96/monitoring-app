@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
+// eslint-disable-next-line import/no-unresolved
 import App from './app';
 
 // ----------------------------------------------------------------------
