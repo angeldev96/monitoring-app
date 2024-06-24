@@ -11,10 +11,10 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use(cors({
-    origin: '*', // Use the environment variable
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],        // Allow specific methods
-    credentials: true                 // To allow sending of cookies
-  }));
+  origin: 'https://monitoring-app-gamma.vercel.app', // Especifica el dominio de tu aplicación cliente
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Permite métodos específicos
+  credentials: true // Permite el envío de cookies
+}));
 
 app.get('/last-water-level', async (req, res) => {
   try {
