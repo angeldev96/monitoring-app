@@ -12,7 +12,6 @@ app.use(bodyParser.json());
 
 app.use(cors({
   origin: process.env.CORS_ORIGIN,
-  // origin: 'https://monitoring-app-gamma.vercel.app', // Especifica el dominio de tu aplicación cliente
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Permite métodos específicos
   credentials: true // Permite el envío de cookies
 }));
