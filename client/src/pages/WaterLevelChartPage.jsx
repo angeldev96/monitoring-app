@@ -21,6 +21,7 @@ export default function WaterLevelChartPage() {
     const fetchWaterLevel = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/last-water-level`);
+        console.log('response', response.data);
         if (response.data && response.data.length > 0) {
           setWaterLevelData({
             level: response.data[0].level,
@@ -61,9 +62,12 @@ export default function WaterLevelChartPage() {
         </Box>
       ) : (
         <>
-          <Typography variant="h6" sx={{ mb: 2 }}>
-            Último nivel de agua registrado: {waterLevelData.level} - {formattedTimestamp}
-          </Typography>
+          <Typography variant="h5" >
+        Último nivel de agua registrado:
+      </Typography>
+      <Typography variant="body1" style={{ fontFamily: 'Arial, sans-serif', fontSize: 16 }}>
+        {`${waterLevelData.level}% - ${formattedTimestamp}`}
+      </Typography>
           <WaterLevelChart level={waterLevelData.level} />
         </>
       )}

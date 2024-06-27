@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import * as echarts from 'echarts/core';
 import React, { useRef, useEffect } from 'react';
 
+
 const WaterLevelChart = ({ level }) => {
   const chartRef = useRef(null);
 
@@ -30,7 +31,7 @@ const WaterLevelChart = ({ level }) => {
           data,
           radius: '80%',
           outline: {
-            show: false,
+            show: true,
           },
           backgroundStyle: {
             color: '#ffffff',
@@ -42,7 +43,7 @@ const WaterLevelChart = ({ level }) => {
           },
           label: {
             formatter: () => `${Math.round(normalizedLevel * 100)}%`,
-            fontSize: 24,
+            fontSize: 40,
             color: '#007FFF',
           },
         },
