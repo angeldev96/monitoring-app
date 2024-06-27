@@ -1,13 +1,15 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress'; // Paso 1: Importar Box
 
 import WaterLevelChart from '../components/WaterLevelChart';
 
 export default function WaterLevelChartPage() {
   const [waterLevel, setWaterLevel] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchWaterLevel = async () => {
@@ -18,6 +20,10 @@ export default function WaterLevelChartPage() {
         }
       } catch (error) {
         console.error('Error fetching water level:', error);
+      } finally {
+        // setTimeout(() => {
+          setLoading(false);
+        // }, 3000);
       }
     };
 
@@ -26,13 +32,17 @@ export default function WaterLevelChartPage() {
 
   return (
     <Container maxWidth="xl">
-      <Typography variant="h4" sx={{ mb: 5 }}>
-        Hi, Welcome back 👋
-      </Typography>
-      {waterLevel !== null ? (
-        <WaterLevelChart level={waterLevel} />
+      {loading ? (
+        <Box // Paso 2: Usar Box para centrar el spinner
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          minHeight="80vh"
+        >
+          <CircularProgress />
+        </Box>
       ) : (
-        <Typography>Loading...</Typography>
+        <WaterLevelChart level={waterLevel} />
       )}
     </Container>
   );
