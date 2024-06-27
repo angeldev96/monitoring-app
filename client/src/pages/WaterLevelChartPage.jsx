@@ -1,15 +1,19 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'; // Paso 1: Importar useNavigate de react-router-dom
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import CircularProgress from '@mui/material/CircularProgress'; // Paso 1: Importar Box
+import IconButton from '@mui/material/IconButton';
+import CircularProgress from '@mui/material/CircularProgress'; // Paso 2: Importar IconButton
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'; // Paso 3: Importar ArrowBackIcon
 
 import WaterLevelChart from '../components/WaterLevelChart';
 
 export default function WaterLevelChartPage() {
   const [waterLevel, setWaterLevel] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate(); // Paso 4: Inicializar useNavigate
 
   useEffect(() => {
     const fetchWaterLevel = async () => {
@@ -21,9 +25,7 @@ export default function WaterLevelChartPage() {
       } catch (error) {
         console.error('Error fetching water level:', error);
       } finally {
-        // setTimeout(() => {
-          setLoading(false);
-        // }, 3000);
+        setLoading(false);
       }
     };
 
@@ -32,6 +34,15 @@ export default function WaterLevelChartPage() {
 
   return (
     <Container maxWidth="xl">
+      <Box
+        display="flex"
+        justifyContent="flex-start"
+        alignItems="flex-start"
+      >
+        <IconButton onClick={() => navigate(-1)} sx={{ mb: 2 }}> {/* Paso 5: Agregar IconButton para navegar hacia atrás */}
+          <ArrowBackIcon />
+        </IconButton>
+      </Box>
       {loading ? (
         <Box 
           display="flex"
