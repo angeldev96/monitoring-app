@@ -19,19 +19,19 @@ export default function AppView() {
   const cardsData = [
     {
       title: 'Monitoreo de nivel de agua',
-      description: 'Muestra el nivel del río en tiempo real. Presenta la tendencia del nivel de agua a lo largo del tiempo (últimas 24 horas, 7 días, etc.). Genera alertas cuando el nivel de agua desciende por debajo de un umbral preestablecido, lo que podría afectar la producción de energía.',
+      description: 'Niveles actuales de agua. Tendencia del nivel (últimas 24h, 7 días). Alertas cuando el nivel es bajo.',
       image: 'https://marketplace-api.looker.com/visualization-screenshots/fill_icon.png',
       path: '/monitoreo-nivel-agua'
     },
     {
       title: 'Monitoreo de caudal',
-      description: 'Registra el volumen de agua que fluye por la turbina en tiempo real. Permite calcular la energía potencial generada por la planta. Visualiza el caudal promedio y su evolución a lo largo del tiempo.',
+      description: 'Volumen de agua por turbina en tiempo real. Cálculo de energía potencial. Evolución del caudal promedio.',
       image: 'https://cdn-icons-png.flaticon.com/512/4169/4169832.png',
       path: '/monitoreo-caudal'
     },
     {
       title: 'Monitoreo de potencia generada',
-      description: 'Muestra la cantidad de energía eléctrica que se produce en tiempo real. Presenta la producción de energía acumulada durante un periodo específico. Facilita el análisis de la eficiencia de la planta.',
+      description: 'Energía eléctrica producida en tiempo real. Producción acumulada en un periodo. Análisis de eficiencia.',
       image: 'https://img.freepik.com/premium-vector/electricity-power-icons-lightning-bolt-with-power-plug-electricity-logo_849264-133.jpg',
       path: '/monitoreo-potencia-generada'
     }
@@ -57,8 +57,10 @@ export default function AppView() {
                   <Typography gutterBottom variant="h5" component="div">
                     {card.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {card.description}
+                  <Typography variant="body2" color="text.secondary" component="div">
+                    {card.description.split('. ').map((sentence, idx) => (
+                      <p key={idx}>{sentence}</p>
+                    ))}
                   </Typography>
                 </CardContent>
               </CardActionArea>
