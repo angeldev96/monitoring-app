@@ -33,7 +33,7 @@ export default function WaterLevelChartPage() {
   return (
     <Container maxWidth="xl">
       {loading ? (
-        <Box // Paso 2: Usar Box para centrar el spinner
+        <Box 
           display="flex"
           justifyContent="center"
           alignItems="center"
