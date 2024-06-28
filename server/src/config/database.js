@@ -58,6 +58,20 @@ const getLastWaterLevels = async () => {
   }
 };
 
+// Función para obtener los niveles de agua de los ultimos 7 dias
+const getLastWeekWaterLevels = async () => {
+  try {
+    const [rows] = await pool.query(
+      'SELECT timestamp, level FROM water_levels WHERE timestamp >= NOW() - INTERVAL 7 DAY ORDER BY timestamp'
+    );
+    return rows;
+  } catch (error) {
+    console.error('Error al obtener niveles de agua:', error);
+    throw error;
+  }
+};
+
+
 // Función para insertar un nuevo dato de caudal
 const insertFlowRate = async (rate) => {
   try {
@@ -99,10 +113,13 @@ const insertAlert = async (type, message) => {
   }
 };
 
+
+
 // Exportar las funciones
 module.exports = {
   insertWaterLevel,
   getLastWaterLevels,
+  getLastWeekWaterLevels,
   insertFlowRate,
   getPowerGenerationLast24Hours,
   insertAlert,
